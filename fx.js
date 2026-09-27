@@ -29,6 +29,29 @@
   if (document.fonts) document.fonts.ready.then(alignDonut);
   alignDonut();
 
+  // Selecting the hero title swaps its face for a question. The real text stays in the DOM,
+  // so the selection, copy and screen readers are untouched; the overlay is h1::after (design.css).
+  if (heroTitle) {
+    const alt = heroTitle.dataset.alt, glyphs = '01<>{}[]/\\|=+*#%&$@;:';
+    let active = false, timer = 0;
+    function reveal(on) {
+      clearInterval(timer);
+      heroTitle.classList.toggle('is-alt', on);
+      if (!on || reduced) { heroTitle.dataset.alt = alt; return; }
+      let step = 0;
+      timer = setInterval(() => {
+        step++;
+        heroTitle.dataset.alt = [...alt].map((c, i) => (c === ' ' || i < step - 3 ? c : glyphs[(Math.random() * glyphs.length) | 0])).join('');
+        if (step > alt.length + 3) clearInterval(timer);
+      }, 45);
+    }
+    document.addEventListener('selectionchange', () => {
+      const sel = getSelection();
+      const on = !!sel && !sel.isCollapsed && sel.rangeCount > 0 && sel.getRangeAt(0).intersectsNode(heroTitle);
+      if (on !== active) { active = on; reveal(on); }
+    });
+  }
+
   // Pointer spotlight, donut tilt, tab light
   const stage = $('.donut-stage');
   if (!reduced && matchMedia('(pointer: fine)').matches) {
@@ -73,14 +96,14 @@
   const SLOTS = 24, LIMIT = 20; // threshold at 85%
   const steps = [...document.querySelectorAll('#smooth-steps li')];
   const modeEl = $('#smooth-mode'), levelEl = $('#smooth-level'), jobEl = $('#smooth-job'), logEl = $('#smooth-log');
-  const threshold = win.querySelector('.smooth-threshold');
+  const threshold = win.querySelector('.smooth-threshold'), frame = win.querySelector('.smooth-frame');
   const modes = { watch: [0, 'WATCHING'], slide: [1, 'SLIDING'], compact: [2, 'SLIDING + COMPACTING'], splice: [3, 'SPLICED'] };
   let ctx = ['hist', 'hist', 'live'], queue = [], mode = 'watch', work = 0, hold = 0;
 
   function block(kind) { const b = document.createElement('i'); b.className = 'blk ' + kind; return b; }
   function render(log) {
-    win.replaceChildren(...ctx.map(block), threshold);
-    lane.replaceChildren(...queue.map(() => block('hist')));
+    win.replaceChildren(...ctx.map(block), frame, threshold);
+    lane.replaceChildren(...queue.map(() => block('out')));
     lane.classList.toggle('working', mode === 'compact');
     panel.dataset.mode = mode;
     const [idx, label] = modes[mode];

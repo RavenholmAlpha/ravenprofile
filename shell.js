@@ -154,7 +154,7 @@
 
     if (command === 'whoami') return { lines: [
       'Raven // RavenHASH',
-      'Leet programmer. Builds agents that keep working and protocols for information freedom.',
+      'Writes agents. Writes protocols.',
     ] };
 
     if (command === 'ls' || command === 'projects') {

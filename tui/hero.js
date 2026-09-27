@@ -10,7 +10,9 @@
   const ctx = canvas.getContext('2d');
   const g = new Grid(120, 40);
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let w = 0, h = 0, visible = true, last = -1e9, horizon = 0;
+  let w = 0, h = 0, visible = true, last = -1e9, horizon = 0, cmd = './donut.c';
+  // site.js announces the active hero shape; mirror its command in the HUD tag.
+  addEventListener('ravenshape', (e) => { cmd = e.detail.cmd; if (reduced) frame(1800); });
   // Dimmed palette so the backdrop never competes with the title.
   const PAL = T.PAL.map((c, i) => (i === 0 ? 'transparent' : c));
 
@@ -37,7 +39,7 @@
     g.box(1, 1, Math.min(34, W - 2), 4, 1, 'sys.raven', 'r');
     g.txt(3, 2, 'pid 0x52A  uptime ' + Math.floor(t) + 's', 9);
     g.txt(3, 3, 'cpu [' + '|'.repeat(4 + Math.floor((Math.sin(t * 2) + 1) * 4)).padEnd(12, '.') + ']', 2);
-    const tag = 'root@ravenhash:~# ./donut.c';
+    const tag = 'root@ravenhash:~# ' + cmd;
     if (W > 70) g.txt(W - tag.length - 2, 2, tag, 1);
     g.bflush();
     if (Math.floor(t * 1.3) % 9 === 0) g.glitch(.12, t);

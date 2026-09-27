@@ -331,33 +331,72 @@
     context.fillRect(0, scan, width, 1);
   }
 
-  function drawTorus(item, seconds) {
+  // Hero shape: random per visit (never the same as last visit), switchable from the header menu.
+  const Shapes = window.RavenShapes;
+  const shapeKey = 'ravenhash.shape';
+  let lastShape = null;
+  try { lastShape = localStorage.getItem(shapeKey); } catch (_) { /* storage blocked */ }
+  let heroShape = Shapes.get(Shapes.pick(lastShape));
+  try { localStorage.setItem(shapeKey, heroShape.id); } catch (_) { /* storage blocked */ }
+  const shapeBuffer = { W: donutWidth, H: donutHeight, asp: 1, depth, cells };
+  const shapeToggle = $('#shape-toggle');
+  const shapeMenu = $('#shape-menu');
+
+  function applyShape(shape) {
+    heroShape = shape;
+    $('#shape-title').textContent = `${shape.cmd} // process alive`;
+    $('#shape-note').textContent = shape.note;
+    $('#donut').setAttribute('aria-label', `由终端字符组成的旋转${shape.zh}`);
+    shapeMenu.querySelectorAll('[role="menuitemradio"]').forEach((node) => node.setAttribute('aria-checked', String(node.dataset.shape === shape.id)));
+    window.dispatchEvent(new CustomEvent('ravenshape', { detail: shape }));
+    if (reducedMotion.matches) drawAll(1.8);
+  }
+  function setMenuOpen(open, focusItem) {
+    shapeMenu.hidden = !open;
+    shapeToggle.setAttribute('aria-expanded', String(open));
+    if (open && focusItem) (shapeMenu.querySelector('[aria-checked="true"]') || shapeMenu.querySelector('button')).focus();
+  }
+  Shapes.list.forEach((shape, index) => {
+    const item = document.createElement('li');
+    item.setAttribute('role', 'none');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.setAttribute('role', 'menuitemradio');
+    button.dataset.shape = shape.id;
+    button.innerHTML = `<span>0${index + 1}</span><b></b><small></small>`;
+    button.querySelector('b').textContent = shape.name;
+    button.querySelector('small').textContent = shape.zh;
+    button.addEventListener('click', () => { applyShape(shape); setMenuOpen(false); shapeToggle.focus(); });
+    item.append(button);
+    shapeMenu.append(item);
+  });
+  shapeToggle.addEventListener('click', () => setMenuOpen(shapeMenu.hidden, true));
+  shapeMenu.addEventListener('keydown', (event) => {
+    const items = [...shapeMenu.querySelectorAll('button')];
+    const at = items.indexOf(document.activeElement);
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      items[(at + (event.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length].focus();
+    } else if (event.key === 'Escape') {
+      event.stopPropagation();
+      setMenuOpen(false);
+      shapeToggle.focus();
+    } else if (event.key === 'Tab') setMenuOpen(false);
+  });
+  document.addEventListener('click', (event) => { if (!shapeMenu.hidden && !event.target.closest('.shape-switch')) setMenuOpen(false); });
+  applyShape(heroShape);
+
+  function drawTorus(item, seconds, shape) {
     const { context, width, height } = item;
     if (!width || !height) return;
     const shade = palettes[document.documentElement.dataset.theme] || palettes.green;
     context.clearRect(0, 0, width, height);
     depth.fill(0);
     cells.fill(0);
+    shapeBuffer.asp = (width / donutWidth) / (height / donutHeight);
+    (shape || Shapes.get('donut')).render(seconds, shapeBuffer);
     const A = .36 + seconds * .78;
     const B = .42 + seconds * .38;
-    const cA = Math.cos(A), sA = Math.sin(A), cB = Math.cos(B), sB = Math.sin(B);
-    for (let j = 0; j < Math.PI * 2; j += .075) {
-      const ct = Math.cos(j), st = Math.sin(j);
-      for (let i = 0; i < Math.PI * 2; i += .032) {
-        const sp = Math.sin(i), cp = Math.cos(i);
-        const h = ct + 2;
-        const D = 1 / (sp * h * sA + st * cA + 5);
-        const t = sp * h * cA - st * sA;
-        const x = Math.round(donutWidth / 2 + 36 * D * (cp * h * cB - t * sB));
-        const y = Math.round(donutHeight / 2 + 29 * D * (cp * h * sB + t * cB));
-        if (x < 0 || x >= donutWidth || y < 0 || y >= donutHeight) continue;
-        const index = y * donutWidth + x;
-        if (D <= depth[index]) continue;
-        depth[index] = D;
-        const light = (st * sA - sp * ct * cA) * cB - sp * ct * sA - st * cA - cp * ct * sB;
-        cells[index] = Math.max(1, Math.min(ramp.length, Math.floor(Math.max(0, light / 1.42) * ramp.length) + 1));
-      }
-    }
     const cellWidth = width / donutWidth;
     const cellHeight = height / donutHeight;
     context.font = `${Math.max(6, Math.floor(cellHeight * .96))}px Consolas, monospace`;
@@ -402,7 +441,7 @@
 
   function drawAll(seconds) {
     drawAmbient(seconds);
-    drawTorus(canvases.donut, seconds);
+    drawTorus(canvases.donut, seconds, heroShape);
     if (!window.RavenIntroFX && !intro.hidden && ['2', '3'].includes(intro.dataset.stage)) drawTorus(canvases.introDonut, seconds * 1.4);
     for (const group of ['agent', 'protocol']) {
       const lines = chapterState[group].diagram;

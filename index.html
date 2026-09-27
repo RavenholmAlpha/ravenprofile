@@ -15,6 +15,7 @@
   <script src="./tui/intro.js" defer></script>
   <script src="./tui/hero.js" defer></script>
   <script src="./tui/sections.js" defer></script>
+  <script src="./tui/shapes.js" defer></script>
   <script src="./shell.js" defer></script>
   <script src="./site.js" defer></script>
   <script src="./fx.js" defer></script>
@@ -50,7 +51,7 @@
     <header class="site-header">
       <a class="header-brand" href="#home" aria-label="RavenHASH 首页"><span class="brand-glyph">[R/H]</span><span>RAVENHASH<span class="cursor">_</span></span></a>
       <nav class="header-nav" aria-label="主导航"><a href="#home">00 / HOME</a><a href="#agent">01 / AGENTS</a><a href="#smooth">01.5 / CONTEXT</a><a href="#protocol">02 / FREEDOM</a></nav>
-      <div class="header-right"><span class="system-live"><span class="live-dot"></span>ONLINE</span><span id="clock">--:--:--</span><button type="button" id="replay-intro" aria-label="重播开场动画" title="重播开场动画">↻</button></div>
+      <div class="header-right"><span class="system-live"><span class="live-dot"></span>ONLINE</span><span id="clock">--:--:--</span><div class="shape-switch"><button type="button" id="shape-toggle" aria-haspopup="menu" aria-expanded="false" aria-controls="shape-menu" aria-label="切换首页图形" title="切换首页图形">◈</button><ul class="shape-menu" id="shape-menu" role="menu" aria-label="首页图形" hidden></ul></div><button type="button" id="replay-intro" aria-label="重播开场动画" title="重播开场动画">↻</button></div>
       <div class="scroll-progress" aria-hidden="true"><i id="scroll-progress"></i></div>
     </header>
 
@@ -61,15 +62,15 @@
         <div class="hero-layout">
           <div class="hero-copy">
             <p class="hero-ident"><span class="status-square"></span> OPERATOR: RAVEN <span>//</span> HANDLE: RAVENHASH</p>
-            <h1 id="hero-title"><span>RAVEN</span><span>HASH<b class="cursor">_</b></span></h1>
-            <p class="hero-creed">代码要在会话结束后继续运行。<br>信息要能越过人为的边界。</p>
-            <p class="hero-bio">我是 Raven，一个偏爱终端的 leet 程序员。我把注意力放在两件事上：让 AI Agent 拥有持续执行与协作的能力，让网络协议保有连接的自由。</p>
+            <h1 id="hero-title" data-alt="WHO R U?"><span>RAVEN</span><span>HASH<b class="cursor">_</b></span></h1>
+            <p class="hero-creed">写 Agent，也写协议。</p>
+            <p class="hero-bio">其余的，都在下面。</p>
             <div class="hero-links"><a href="#agent"><span>01</span> EXPLORE AGENTS <span>↗</span></a><a href="#protocol"><span>02</span> EXPLORE PROTOCOLS <span>↗</span></a></div>
           </div>
-          <div class="hero-visual" aria-label="实时旋转的字符甜甜圈">
-            <div class="visual-top"><span>donut.c // process alive</span><span>PID 0x52A</span></div>
+          <div class="hero-visual" aria-label="实时旋转的字符图形">
+            <div class="visual-top"><span id="shape-title">donut.c // process alive</span><span>PID 0x52A</span></div>
             <div class="donut-stage"><div class="donut-orbit" aria-hidden="true"></div><div class="donut-orbit o2" aria-hidden="true"></div><div class="donut-axis" aria-hidden="true"><span>+</span><span>+</span><span>+</span><span>+</span></div><canvas id="donut" role="img" aria-label="由终端字符组成的旋转甜甜圈"></canvas><div class="donut-coordinate">X: <span id="angle-a">0.00</span><br>Y: <span id="angle-b">0.00</span></div></div>
-            <div class="visual-bottom"><span>ASCII TORUS / Z-BUFFER / REALTIME</span><span>▁▃▅▇▅▃▁</span></div>
+            <div class="visual-bottom"><span id="shape-note">ASCII TORUS / Z-BUFFER / REALTIME</span><span>▁▃▅▇▅▃▁</span></div>
           </div>
         </div>
         <div class="hero-foot"><span>TERMINAL-NATIVE BY INSTINCT. SYSTEMS-FIRST BY DESIGN.</span><a href="#agent">SCROLL TO ENTER ↓</a></div>
@@ -100,8 +101,8 @@
               <div class="console-bar"><span>/runtime/context/smooth.sys</span><span><i></i><b id="smooth-mode">WATCHING</b></span></div>
               <div class="smooth-body">
                 <div class="smooth-meter-head"><span>MODEL CONTEXT WINDOW</span><span id="smooth-level">000%</span></div>
-                <div class="smooth-window" id="smooth-window"><div class="smooth-threshold"><span>THRESHOLD</span></div></div>
-                <div class="smooth-legend"><span class="k-sum">SUMMARY</span><span class="k-hist">HISTORY</span><span class="k-live">LIVE TURN</span><span class="k-out">SLID OUT</span></div>
+                <div class="smooth-window" id="smooth-window"><div class="smooth-frame"><span>SLIDING WINDOW</span></div><div class="smooth-threshold"><span>THRESHOLD</span></div></div>
+                <div class="smooth-legend"><span class="k-sum">SUMMARY</span><span class="k-hist">HISTORY</span><span class="k-live">LIVE TURN</span><span class="k-win">SLIDING WINDOW</span><span class="k-out">SLID OUT</span></div>
                 <div class="smooth-meter-head"><span>BACKGROUND COMPACTOR // VAULT</span><span id="smooth-job">IDLE</span></div>
                 <div class="smooth-lane" id="smooth-lane"></div>
                 <p class="smooth-log" id="smooth-log">&gt; context.watch()</p>
@@ -120,7 +121,7 @@
         </div>
       </section>
 
-      <section class="closing" id="contact" aria-labelledby="closing-title"><div class="closing-inner"><canvas class="tui-banner" data-scene="contact" data-label="EOF" data-sub="> process exited with code 0" aria-hidden="true"></canvas><div class="section-index"><span>03 // OPEN CHANNEL</span><span>EOF / RAVENHASH</span></div><div class="closing-body"><p class="closing-prompt">&gt; whoami</p><h2 id="closing-title">RAVENHASH<span class="cursor">_</span></h2><p>写会记住的 Agent，写能连接的协议。<br>保持好奇，保持在线。</p><p class="closing-manifesto">我喜欢拆开系统最容易失效的地方：任务中断后还能否继续，协作交接后依据还在不在，连接被观察时能否继续抵达。CorvusAI、TSUNAMI、Vault 与三个协议，都是沿着这些问题长出来的答案。</p><a href="https://github.com/RavenholmAlpha" target="_blank" rel="noopener noreferrer" class="github-link"><span>OPEN GITHUB / RAVENHOLMALPHA</span><span>↗</span></a></div><footer><span>© <span id="year">2026</span> RAVENHASH</span><span>BUILT FROM TEXT / SIGNAL / CODE</span><a href="#home">RETURN TO ROOT ↑</a></footer></div></section>
+      <section class="closing" id="contact" aria-labelledby="closing-title"><div class="closing-inner"><canvas class="tui-banner" data-scene="contact" data-label="EOF" data-sub="> process exited with code 0" aria-hidden="true"></canvas><div class="section-index"><span>03 // OPEN CHANNEL</span><span>EOF / RAVENHASH</span></div><div class="closing-body"><p class="closing-prompt">&gt; whoami</p><h2 id="closing-title">RAVENHASH<span class="cursor">_</span></h2><p>就这些。有事，GitHub 见。</p><a href="https://github.com/RavenholmAlpha" target="_blank" rel="noopener noreferrer" class="github-link"><span>OPEN GITHUB / RAVENHOLMALPHA</span><span>↗</span></a></div><footer><span>© <span id="year">2026</span> RAVENHASH</span><span>BUILT FROM TEXT / SIGNAL / CODE</span><a href="#home">RETURN TO ROOT ↑</a></footer></div></section>
     </main>
   </div>
 
