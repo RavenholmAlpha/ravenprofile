@@ -1,0 +1,262 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e31]:
+    - banner [ref=e32]:
+      - link "RavenHASH 首页" [ref=e33] [cursor=pointer]:
+        - /url: "#home"
+        - generic [ref=e34]: "[R/H]"
+        - generic [ref=e35]: RAVENHASH_
+      - navigation "主导航" [ref=e36]:
+        - link "00 / HOME" [ref=e37] [cursor=pointer]:
+          - /url: "#home"
+        - link "01 / AGENTS" [ref=e38] [cursor=pointer]:
+          - /url: "#agent"
+        - link "02 / FREEDOM" [ref=e39] [cursor=pointer]:
+          - /url: "#protocol"
+      - generic [ref=e40]:
+        - generic [ref=e41]: ONLINE
+        - generic [ref=e43]: 15:21:02 CST
+        - button "重播开场动画" [ref=e44] [cursor=pointer]: ↻
+    - main [ref=e45]:
+      - region [ref=e46]:
+        - generic [ref=e47]:
+          - generic [ref=e48]: SYS://OPERATOR/IDENTITY
+          - generic [ref=e49]: ROOT ACCESS / GRANTED
+        - generic [ref=e50]:
+          - generic [ref=e51]:
+            - paragraph [ref=e52]:
+              - text: "OPERATOR: RAVEN"
+              - generic [ref=e54]: //
+              - text: "HANDLE: RAVENHASH"
+            - heading "RAVEN HASH_" [level=1] [ref=e55]:
+              - generic [ref=e56]: RAVEN
+              - generic [ref=e57]: HASH_
+            - paragraph [ref=e58]: 代码要在会话结束后继续运行。信息要能越过人为的边界。
+            - paragraph [ref=e59]: 我是 Raven，一个偏爱终端的 leet 程序员。我把注意力放在两件事上：让 AI Agent 拥有持续执行与协作的能力，让网络协议保有连接的自由。
+            - generic [ref=e60]:
+              - link "01 EXPLORE AGENTS ↗" [ref=e61] [cursor=pointer]:
+                - /url: "#agent"
+                - generic [ref=e62]: "01"
+                - text: EXPLORE AGENTS
+                - generic [ref=e63]: ↗
+              - link "02 EXPLORE PROTOCOLS ↗" [ref=e64] [cursor=pointer]:
+                - /url: "#protocol"
+                - generic [ref=e65]: "02"
+                - text: EXPLORE PROTOCOLS
+                - generic [ref=e66]: ↗
+          - generic "实时旋转的字符甜甜圈" [ref=e67]:
+            - generic [ref=e68]:
+              - generic [ref=e69]: donut.c // process alive
+              - generic [ref=e70]: PID 0x52A
+            - generic [ref=e71]:
+              - generic [aria-hidden]:
+                - generic: +
+                - generic: +
+                - generic: +
+                - generic: +
+              - img "由终端字符组成的旋转甜甜圈" [ref=e72]
+              - generic [ref=e73]: "X: 1.22Y: 0.35"
+              - text: Z-BUFFER // ACTIVE
+            - generic [ref=e74]:
+              - generic [ref=e75]: ASCII TORUS / Z-BUFFER / REALTIME
+              - generic [ref=e76]: ▁▃▅▇▅▃▁
+        - generic [ref=e77]:
+          - generic [ref=e78]: TERMINAL-NATIVE BY INSTINCT. SYSTEMS-FIRST BY DESIGN.
+          - link "SCROLL TO ENTER ↓" [ref=e79] [cursor=pointer]:
+            - /url: "#agent"
+        - text: 01001010 10010101 01010110 11001010 01110001 01011100
+      - region [ref=e80]:
+        - generic [aria-hidden] [ref=e81]:
+          - generic [ref=e82]: RUN → PERSIST → DELEGATE → REMEMBER →
+          - generic [ref=e83]: RUN → PERSIST → DELEGATE → REMEMBER →
+        - generic [ref=e84]:
+          - generic [ref=e85]:
+            - generic [ref=e86]: 01 // INTELLIGENCE THAT STAYS
+            - generic [ref=e87]: AGENT SYSTEMS [03]
+          - generic [ref=e88]:
+            - generic [ref=e89]:
+              - paragraph [ref=e90]: /sys/raven/agent-systems
+              - heading [level=2] [ref=e91]:
+                - text: 让智能体
+                - emphasis [ref=e92]: 继续工作。
+            - paragraph [ref=e93]: 会话结束、窗口关闭、Agent 交接，工作不该归零。我的 Agent 系统关心执行、状态和协作：从单次对话走向能长期推进任务的基础设施。
+          - generic [ref=e94]:
+            - generic [ref=e95]:
+              - generic [ref=e96]:
+                - generic [ref=e97]: SELECT PROCESS
+                - generic [ref=e98]: 03 ENTRIES
+              - tablist "AI Agent 项目" [ref=e99]:
+                - tab "01 CorvusAI ↗ AGENT RUNTIME 面向多项目软件工程的持久化 AI Agent 运行时。" [selected] [ref=e100] [cursor=pointer]:
+                  - generic [ref=e101]:
+                    - generic [ref=e102]: "01"
+                    - generic [ref=e103]: CorvusAI
+                    - generic [ref=e104]: ↗
+                  - generic [ref=e105]: AGENT RUNTIME
+                  - generic [ref=e106]: 面向多项目软件工程的持久化 AI Agent 运行时。
+                - tab "02 TSUNAMI AI ↗ DESKTOP AGENT Windows 优先的桌面 Coding Agent Harness。" [ref=e107] [cursor=pointer]:
+                  - generic [ref=e108]:
+                    - generic [ref=e109]: "02"
+                    - generic [ref=e110]: TSUNAMI AI
+                    - generic [ref=e111]: ↗
+                  - generic [ref=e112]: DESKTOP AGENT
+                  - generic [ref=e113]: Windows 优先的桌面 Coding Agent Harness。
+                - tab "03 Vault ↗ AGENT INFRASTRUCTURE 多 Agent 协作的结构化状态与任务交接服务。" [ref=e114] [cursor=pointer]:
+                  - generic [ref=e115]:
+                    - generic [ref=e116]: "03"
+                    - generic [ref=e117]: Vault
+                    - generic [ref=e118]: ↗
+                  - generic [ref=e119]: AGENT INFRASTRUCTURE
+                  - generic [ref=e120]: 多 Agent 协作的结构化状态与任务交接服务。
+              - generic [ref=e121]: "> inspect corvusai_"
+            - tabpanel "01 CorvusAI ↗ AGENT RUNTIME 面向多项目软件工程的持久化 AI Agent 运行时。" [ref=e122]:
+              - generic [ref=e123]:
+                - generic [ref=e124]: /projects/agent/corvusai.sys
+                - generic [ref=e125]: PROCESS ONLINE
+              - generic [ref=e127]:
+                - paragraph [ref=e128]: AGENT SYSTEMS // AGENT RUNTIME
+                - heading "CorvusAI" [level=3] [ref=e129]
+                - paragraph [ref=e130]: 面向多项目软件工程的持久化 AI Agent 运行时。
+                - paragraph [ref=e131]: 终端界面、本地 WebUI、SQLite 状态、专家 Agent、项目记忆与 MCP 互操作，服务于跨仓库的长期工作。
+              - generic [ref=e132]:
+                - generic [ref=e133]:
+                  - generic [ref=e134]:
+                    - generic [ref=e135]: SYSTEM TOPOLOGY
+                    - generic [ref=e136]: LIVE TRACE
+                  - generic [ref=e137]:
+                    - generic [ref=e138]: USER / IDE / WEBHOOK
+                    - generic [ref=e139]: "|"
+                    - generic [ref=e140]: TUI --- WEBUI --- CLI
+                    - generic [ref=e141]: "|"
+                    - generic [ref=e142]: GLOBAL ORCHESTRATOR
+                    - generic [ref=e143]: +-- PROJECT AGENTS
+                    - generic [ref=e144]: +-- TOOLS / MCP / SKILLS
+                    - generic [ref=e145]: "|"
+                    - generic [ref=e146]: SQLITE / RUNS / MEMORY
+                - generic [ref=e147]:
+                  - generic [ref=e148]:
+                    - generic [ref=e149]: CAPABILITIES
+                    - generic [ref=e150]: 03 MODULES
+                  - list [ref=e151]:
+                    - listitem [ref=e152]: "> 跨项目编排"
+                    - listitem [ref=e153]: "> 可恢复执行"
+                    - listitem [ref=e154]: "> 项目记忆"
+                  - generic [ref=e155]:
+                    - generic [ref=e156]: + Node.js
+                    - generic [ref=e157]: + SQLite
+                    - generic [ref=e158]: + MCP
+                    - generic [ref=e159]: + TUI
+              - generic [ref=e160]:
+                - link "READ README ↗" [ref=e161] [cursor=pointer]:
+                  - /url: ./CorvusAI_README_zh.md
+                - link "VIEW SOURCE ↗" [ref=e162] [cursor=pointer]:
+                  - /url: https://github.com/RavenholmAlpha/CorvusAI
+                - generic [ref=e163]: "R/H :: CORVUSAI"
+      - region [ref=e164]:
+        - generic [aria-hidden] [ref=e165]:
+          - generic [ref=e166]: CONNECT → ROUTE → MASK → REACH →
+          - generic [ref=e167]: CONNECT → ROUTE → MASK → REACH →
+        - generic [ref=e168]:
+          - generic [ref=e169]:
+            - generic [ref=e170]: 02 // THE RIGHT TO CONNECT
+            - generic [ref=e171]: PROTOCOL SYSTEMS [03]
+          - generic [ref=e172]:
+            - generic [ref=e173]:
+              - paragraph [ref=e174]: /sys/raven/information-freedom
+              - heading [level=2] [ref=e175]:
+                - text: 让信息
+                - emphasis [ref=e176]: 自由抵达。
+            - paragraph [ref=e177]: 连接不该轻易被识别与切断。我做的代理协议探索不同的承载方式：TLS、WebSocket 与真实媒体流；目标始终是让访问更自主，让通信更有韧性。
+          - generic [ref=e178]:
+            - generic [ref=e179]:
+              - generic [ref=e180]:
+                - generic [ref=e181]: SELECT ROUTE
+                - generic [ref=e182]: 03 ENTRIES
+              - tablist "代理协议项目" [ref=e183]:
+                - tab "01 tsunami / protocol ↗ TLS TRANSPORT 基于 TLS 1.3 的高性能多路复用代理协议。" [selected] [ref=e184] [cursor=pointer]:
+                  - generic [ref=e185]:
+                    - generic [ref=e186]: "01"
+                    - generic [ref=e187]: tsunami / protocol
+                    - generic [ref=e188]: ↗
+                  - generic [ref=e189]: TLS TRANSPORT
+                  - generic [ref=e190]: 基于 TLS 1.3 的高性能多路复用代理协议。
+                - tab "02 Wave ↗ WEBSOCKET TRANSPORT 伪装为真实 WebSocket 应用的隧道协议。" [ref=e191] [cursor=pointer]:
+                  - generic [ref=e192]:
+                    - generic [ref=e193]: "02"
+                    - generic [ref=e194]: Wave
+                    - generic [ref=e195]: ↗
+                  - generic [ref=e196]: WEBSOCKET TRANSPORT
+                  - generic [ref=e197]: 伪装为真实 WebSocket 应用的隧道协议。
+                - tab "03 SEGMENT ↗ HTTP/2 TRANSPORT 藏在功能型视频流媒体站点后的加密多路复用代理。" [ref=e198] [cursor=pointer]:
+                  - generic [ref=e199]:
+                    - generic [ref=e200]: "03"
+                    - generic [ref=e201]: SEGMENT
+                    - generic [ref=e202]: ↗
+                  - generic [ref=e203]: HTTP/2 TRANSPORT
+                  - generic [ref=e204]: 藏在功能型视频流媒体站点后的加密多路复用代理。
+              - generic [ref=e205]: "> inspect tsunami_"
+            - tabpanel "01 tsunami / protocol ↗ TLS TRANSPORT 基于 TLS 1.3 的高性能多路复用代理协议。" [ref=e206]:
+              - generic [ref=e207]:
+                - generic [ref=e208]: /projects/protocol/tsunami.sys
+                - generic [ref=e209]: PROCESS ONLINE
+              - generic [ref=e211]:
+                - paragraph [ref=e212]: INFORMATION FREEDOM // TLS TRANSPORT
+                - heading "tsunami / protocol" [level=3] [ref=e213]
+                - paragraph [ref=e214]: 基于 TLS 1.3 的高性能多路复用代理协议。
+                - paragraph [ref=e215]: 以 TLS 1.3、uTLS 指纹、透明回退与可编程填充实现多路复用 TCP/UDP 传输。
+              - generic [ref=e216]:
+                - generic [ref=e217]:
+                  - generic [ref=e218]:
+                    - generic [ref=e219]: SYSTEM TOPOLOGY
+                    - generic [ref=e220]: LIVE TRACE
+                  - generic [ref=e221]:
+                    - generic [ref=e222]: CLIENT / uTLS HELLO
+                    - generic [ref=e223]: "| TLS 1.3"
+                    - generic [ref=e224]: v
+                    - generic [ref=e225]: TSUNAMI SERVER
+                    - generic [ref=e226]: +-- AUTH -> MUX TCP / UDP
+                    - generic [ref=e227]: +-- OTHER -> REAL WEBSITE
+                    - generic [ref=e228]: "|"
+                    - generic [ref=e229]: PADDING / SURGE / FALLBACK
+                - generic [ref=e230]:
+                  - generic [ref=e231]:
+                    - generic [ref=e232]: CAPABILITIES
+                    - generic [ref=e233]: 03 MODULES
+                  - list [ref=e234]:
+                    - listitem [ref=e235]: "> TLS 1.3 / uTLS"
+                    - listitem [ref=e236]: "> 单连接多路复用"
+                    - listitem [ref=e237]: "> 认证失败透明回退"
+                  - generic [ref=e238]:
+                    - generic [ref=e239]: + Go
+                    - generic [ref=e240]: + TLS 1.3
+                    - generic [ref=e241]: + uTLS
+                    - generic [ref=e242]: + Multiplexing
+              - generic [ref=e243]:
+                - link "READ README ↗" [ref=e244] [cursor=pointer]:
+                  - /url: ./tsunami_README.zh.md
+                - link "VIEW SOURCE ↗" [ref=e245] [cursor=pointer]:
+                  - /url: https://github.com/RavenholmAlpha/tsunami
+                - generic [ref=e246]: "R/H :: TSUNAMI"
+      - region [ref=e247]:
+        - generic [ref=e248]:
+          - generic [ref=e249]:
+            - generic [ref=e250]: 03 // OPEN CHANNEL
+            - generic [ref=e251]: EOF / RAVENHASH
+          - generic [ref=e252]:
+            - paragraph [ref=e253]: "> whoami"
+            - heading "RAVENHASH_" [level=2] [ref=e254]
+            - paragraph [ref=e255]: 写会记住的 Agent，写能连接的协议。保持好奇，保持在线。
+            - link "OPEN GITHUB / RAVENHOLMALPHA ↗" [ref=e256] [cursor=pointer]:
+              - /url: https://github.com/RavenholmAlpha
+              - generic [ref=e257]: OPEN GITHUB / RAVENHOLMALPHA
+              - generic [ref=e258]: ↗
+          - generic [ref=e259]:
+            - generic [ref=e260]: © 2026 RAVENHASH
+            - generic [ref=e261]: BUILT FROM TEXT / SIGNAL / CODE
+            - link "RETURN TO ROOT ↑" [ref=e262] [cursor=pointer]:
+              - /url: "#home"
+  - complementary "交互式 Shell" [ref=e263]:
+    - generic [ref=e264]:
+      - button "展开 Shell 输出" [ref=e265] [cursor=pointer]: ▣
+      - generic [ref=e266]: guest@raven:~$
+      - textbox "输入 Shell 命令" [ref=e267]:
+        - /placeholder: help / ls / inspect wave
+      - button "执行命令" [ref=e268] [cursor=pointer]: ↵

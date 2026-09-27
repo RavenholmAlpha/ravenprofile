@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070b0c">
+  <meta name="description" content="RavenHASH 的个人终端：持续工作的 AI Agent，与通向信息自由的代理协议。">
+  <title>RavenHASH // Operator Terminal</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./design.css">
+  <script src="./tui/core.js" defer></script>
+  <script src="./tui/draw.js" defer></script>
+  <script src="./tui/bg.js" defer></script>
+  <script src="./tui/intro.js" defer></script>
+  <script src="./tui/hero.js" defer></script>
+  <script src="./tui/sections.js" defer></script>
+  <script src="./shell.js" defer></script>
+  <script src="./site.js" defer></script>
+  <script src="./fx.js" defer></script>
+</head>
+<body>
+  <canvas id="ambient" class="ambient" aria-hidden="true"></canvas>
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="spotlight" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="screen-noise" aria-hidden="true"></div>
+
+  <div class="intro intro--tui" id="intro" role="dialog" aria-modal="true" aria-label="RavenHASH 启动动画" data-stage="0">
+    <canvas id="intro-field" aria-hidden="true"></canvas>
+    <div class="intro-frame">
+      <div class="intro-top"><span>R/H // BOOTLOADER 0x52A</span><span id="intro-time">00:00:00</span></div>
+      <div class="intro-main">
+        <div class="intro-caption"><span id="intro-stage-count">01 / 05</span><span id="intro-phase">INITIALIZING</span></div>
+        <p class="intro-command" id="intro-command">&gt; init ravenhash --mode=operator</p>
+        <div class="intro-wordmark" data-text="RAVENHASH">RAVEN<span>HASH</span><i>_</i></div>
+        <canvas id="intro-donut" aria-hidden="true"></canvas>
+        <div class="intro-dual" aria-hidden="true"><span>AI AGENT<br><small>BUILD / RUN / REMEMBER</small></span><span>INFORMATION<br>FREEDOM<small>ROUTE / MASK / REACH</small></span></div>
+        <p class="intro-subline" id="intro-line">Locating operator...</p>
+      </div>
+      <div class="intro-bottom-zone">
+        <div class="intro-logs" id="intro-logs" aria-hidden="true"></div>
+        <div class="intro-progress-wrap"><div class="intro-progress" aria-hidden="true"><div id="intro-progress"></div></div><div class="intro-readout"><span id="intro-status">LINK 00 // IDENTITY</span><span id="intro-percent">000%</span></div></div>
+      </div>
+      <div class="intro-bottom"><span>SYS.RAVENHASH // SIGNAL FOUND</span><button id="skip-intro" type="button" title="跳过开场动画">SKIP [ESC] ↗</button></div>
+    </div>
+  </div>
+
+  <div class="page" id="page">
+    <header class="site-header">
+      <a class="header-brand" href="#home" aria-label="RavenHASH 首页"><span class="brand-glyph">[R/H]</span><span>RAVENHASH<span class="cursor">_</span></span></a>
+      <nav class="header-nav" aria-label="主导航"><a href="#home">00 / HOME</a><a href="#agent">01 / AGENTS</a><a href="#smooth">01.5 / CONTEXT</a><a href="#protocol">02 / FREEDOM</a></nav>
+      <div class="header-right"><span class="system-live"><span class="live-dot"></span>ONLINE</span><span id="clock">--:--:--</span><button type="button" id="replay-intro" aria-label="重播开场动画" title="重播开场动画">↻</button></div>
+      <div class="scroll-progress" aria-hidden="true"><i id="scroll-progress"></i></div>
+    </header>
+
+    <main>
+      <section class="hero hero--center" id="home" aria-labelledby="hero-title">
+        <canvas id="hero-tui" class="hero-tui" aria-hidden="true"></canvas>
+        <div class="hero-overline"><span>SYS://OPERATOR/IDENTITY</span><span>ROOT ACCESS / GRANTED</span></div>
+        <div class="hero-layout">
+          <div class="hero-copy">
+            <p class="hero-ident"><span class="status-square"></span> OPERATOR: RAVEN <span>//</span> HANDLE: RAVENHASH</p>
+            <h1 id="hero-title"><span>RAVEN</span><span>HASH<b class="cursor">_</b></span></h1>
+            <p class="hero-creed">代码要在会话结束后继续运行。<br>信息要能越过人为的边界。</p>
+            <p class="hero-bio">我是 Raven，一个偏爱终端的 leet 程序员。我把注意力放在两件事上：让 AI Agent 拥有持续执行与协作的能力，让网络协议保有连接的自由。</p>
+            <div class="hero-links"><a href="#agent"><span>01</span> EXPLORE AGENTS <span>↗</span></a><a href="#protocol"><span>02</span> EXPLORE PROTOCOLS <span>↗</span></a></div>
+          </div>
+          <div class="hero-visual" aria-label="实时旋转的字符甜甜圈">
+            <div class="visual-top"><span>donut.c // process alive</span><span>PID 0x52A</span></div>
+            <div class="donut-stage"><div class="donut-orbit" aria-hidden="true"></div><div class="donut-orbit o2" aria-hidden="true"></div><div class="donut-axis" aria-hidden="true"><span>+</span><span>+</span><span>+</span><span>+</span></div><canvas id="donut" role="img" aria-label="由终端字符组成的旋转甜甜圈"></canvas><div class="donut-coordinate">X: <span id="angle-a">0.00</span><br>Y: <span id="angle-b">0.00</span></div></div>
+            <div class="visual-bottom"><span>ASCII TORUS / Z-BUFFER / REALTIME</span><span>▁▃▅▇▅▃▁</span></div>
+          </div>
+        </div>
+        <div class="hero-foot"><span>TERMINAL-NATIVE BY INSTINCT. SYSTEMS-FIRST BY DESIGN.</span><a href="#agent">SCROLL TO ENTER ↓</a></div>
+      </section>
+
+      <section class="chapter chapter-agent" id="agent" data-chapter="agent" aria-labelledby="agent-title">
+        <div class="chapter-ribbon" aria-hidden="true"><span>RUN → PERSIST → DELEGATE → REMEMBER →</span><span>RUN → PERSIST → DELEGATE → REMEMBER →</span></div>
+        <div class="chapter-inner">
+          <canvas class="tui-banner" data-scene="agent" data-label="AGENTS" data-sub="> mount agent://corvusai  agent://tsunami-ai  agent://vault" aria-hidden="true"></canvas><div class="section-index"><span>01 // INTELLIGENCE THAT STAYS</span><span>AGENT SYSTEMS [03]</span></div>
+          <div class="chapter-heading" data-num="01"><div><p class="section-kicker">/sys/raven/agent-systems</p><h2 id="agent-title">让智能体<br><em>继续工作。</em></h2></div><p>会话结束、窗口关闭、Agent 交接，工作不该归零。我的 Agent 系统关心执行、状态和协作：从单次对话走向能长期推进任务的基础设施。</p></div>
+          <div class="chapter-workspace"><div class="project-nav"><div class="project-nav-head"><span>SELECT PROCESS</span><span>03 ENTRIES</span></div><div class="project-tabs" id="agent-tabs" role="tablist" aria-label="AI Agent 项目"></div><div class="project-nav-foot">&gt; inspect corvusai<span class="cursor">_</span></div></div><div class="project-console" id="agent-console" role="tabpanel" aria-live="polite"></div></div>
+        </div>
+      </section>
+
+      <section class="chapter chapter-smooth" id="smooth" data-chapter="smooth" aria-labelledby="smooth-title">
+        <div class="chapter-ribbon" aria-hidden="true"><span>WATCH → SLIDE → COMPACT → SPLICE →</span><span>WATCH → SLIDE → COMPACT → SPLICE →</span></div>
+        <div class="chapter-inner">
+          <canvas class="tui-banner" data-scene="smooth" data-label="CONTEXT" data-sub="> watch -> slide -> compact -> splice" aria-hidden="true"></canvas><div class="section-index"><span>01.5 // CONTEXT THAT NEVER BREAKS</span><span>CORVUSAI + TSUNAMI AI</span></div>
+          <div class="chapter-heading" data-num="∞"><div><p class="section-kicker">/sys/raven/smooth-context</p><h2 id="smooth-title">上下文<br><em>平滑续航。</em></h2></div><p>CorvusAI 与 TSUNAMI AI 都完整接入 Vault，并共享 Smooth Context 设计：上下文将满时不打断任务、不硬截断，先切到滑动窗口保住最近的原文，再在后台压缩历史，完成后把摘要拼接回来。</p></div>
+          <div class="smooth-lab">
+            <ol class="smooth-steps" id="smooth-steps">
+              <li data-step="0"><b>01 WATCH</b><span>监测上下文水位，接近阈值即预备切换。</span></li>
+              <li data-step="1"><b>02 SLIDE</b><span>立即切为滑动上下文，最近轮次保持原文，对话不停顿。</span></li>
+              <li data-step="2"><b>03 COMPACT</b><span>后台异步压缩被滑出的历史，保留决策、约束与引用。</span></li>
+              <li data-step="3"><b>04 SPLICE</b><span>压缩完成后把摘要拼接到窗口头部，回到常规上下文。</span></li>
+            </ol>
+            <div class="smooth-panel" role="img" aria-label="Smooth Context 过程演示：水位上升、滑动窗口、后台压缩、摘要拼接">
+              <div class="console-bar"><span>/runtime/context/smooth.sys</span><span><i></i><b id="smooth-mode">WATCHING</b></span></div>
+              <div class="smooth-body">
+                <div class="smooth-meter-head"><span>MODEL CONTEXT WINDOW</span><span id="smooth-level">000%</span></div>
+                <div class="smooth-window" id="smooth-window"><div class="smooth-threshold"><span>THRESHOLD</span></div></div>
+                <div class="smooth-legend"><span class="k-sum">SUMMARY</span><span class="k-hist">HISTORY</span><span class="k-live">LIVE TURN</span><span class="k-out">SLID OUT</span></div>
+                <div class="smooth-meter-head"><span>BACKGROUND COMPACTOR // VAULT</span><span id="smooth-job">IDLE</span></div>
+                <div class="smooth-lane" id="smooth-lane"></div>
+                <p class="smooth-log" id="smooth-log">&gt; context.watch()</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter chapter-protocol" id="protocol" data-chapter="protocol" aria-labelledby="protocol-title">
+        <div class="chapter-ribbon" aria-hidden="true"><span>CONNECT → ROUTE → MASK → REACH →</span><span>CONNECT → ROUTE → MASK → REACH →</span></div>
+        <div class="chapter-inner">
+          <canvas class="tui-banner" data-scene="protocol" data-label="FREEDOM" data-sub="> route tsunami://  wave://  segment://" aria-hidden="true"></canvas><div class="section-index"><span>02 // THE RIGHT TO CONNECT</span><span>PROTOCOL SYSTEMS [03]</span></div>
+          <div class="chapter-heading" data-num="02"><div><p class="section-kicker">/sys/raven/information-freedom</p><h2 id="protocol-title">让信息<br><em>自由抵达。</em></h2></div><p>连接不该轻易被识别与切断。我做的代理协议探索不同的承载方式：TLS、WebSocket 与真实媒体流；目标始终是让访问更自主，让通信更有韧性。</p></div>
+          <div class="chapter-workspace"><div class="project-nav"><div class="project-nav-head"><span>SELECT ROUTE</span><span>03 ENTRIES</span></div><div class="project-tabs" id="protocol-tabs" role="tablist" aria-label="代理协议项目"></div><div class="project-nav-foot">&gt; inspect tsunami<span class="cursor">_</span></div></div><div class="project-console" id="protocol-console" role="tabpanel" aria-live="polite"></div></div>
+        </div>
+      </section>
+
+      <section class="closing" id="contact" aria-labelledby="closing-title"><div class="closing-inner"><canvas class="tui-banner" data-scene="contact" data-label="EOF" data-sub="> process exited with code 0" aria-hidden="true"></canvas><div class="section-index"><span>03 // OPEN CHANNEL</span><span>EOF / RAVENHASH</span></div><div class="closing-body"><p class="closing-prompt">&gt; whoami</p><h2 id="closing-title">RAVENHASH<span class="cursor">_</span></h2><p>写会记住的 Agent，写能连接的协议。<br>保持好奇，保持在线。</p><p class="closing-manifesto">我喜欢拆开系统最容易失效的地方：任务中断后还能否继续，协作交接后依据还在不在，连接被观察时能否继续抵达。CorvusAI、TSUNAMI、Vault 与三个协议，都是沿着这些问题长出来的答案。</p><a href="https://github.com/RavenholmAlpha" target="_blank" rel="noopener noreferrer" class="github-link"><span>OPEN GITHUB / RAVENHOLMALPHA</span><span>↗</span></a></div><footer><span>© <span id="year">2026</span> RAVENHASH</span><span>BUILT FROM TEXT / SIGNAL / CODE</span><a href="#home">RETURN TO ROOT ↑</a></footer></div></section>
+    </main>
+  </div>
+
+  <aside class="shell-dock" aria-label="交互式 Shell"><div class="shell-output" id="shell-output" hidden><div class="shell-output-head"><span>RAVENHASH://SHELL</span><button type="button" id="close-output" aria-label="收起输出" title="收起 Shell 输出">×</button></div><div class="shell-lines" id="shell-lines" role="log" aria-live="polite"></div></div><form class="shell-form" id="shell-form" autocomplete="off"><button type="button" class="shell-toggle" id="toggle-shell" title="展开 Shell 输出" aria-label="展开 Shell 输出" aria-expanded="false">▣</button><label for="shell-input" class="shell-prompt">guest@raven<span>:</span>~$</label><input id="shell-input" name="command" type="text" placeholder="help / ls / inspect wave" spellcheck="false" aria-label="输入 Shell 命令"><button class="shell-submit" type="submit" title="执行命令" aria-label="执行命令">↵</button></form></aside>
+</body>
+</html>

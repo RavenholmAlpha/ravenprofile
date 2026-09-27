@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>world.execute(me); // TUI MV</title>
+<script>window.__errs=[];window.onerror=function(m,s,l){__errs.push(m+' @'+String(s).split('/').pop()+':'+l)};</script>
+<style>
+html,body{margin:0;height:100%;background:#05070a;overflow:hidden}
+#stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+#term{display:block;image-rendering:pixelated}
+#crt{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.28) 0 1px,transparent 1px 3px),radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.75) 100%)}
+#flash{position:absolute;inset:0;pointer-events:none;background:#e8fff4;opacity:0;mix-blend-mode:screen}
+#boot{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center;background:#05070a;color:#48ffb0;font:16px "Cascadia Mono",Consolas,monospace}
+#boot b{font-size:26px;letter-spacing:3px}#boot span{color:#5d6a78;font-size:13px}
+#go{background:none;border:1px solid #48ffb0;color:#48ffb0;font:inherit;padding:10px 26px;cursor:pointer}
+#go:hover,#go:focus-visible{background:#48ffb0;color:#05070a;outline:none}
+</style></head><body>
+<div id="stage"><canvas id="term" aria-label="world.execute(me) terminal music video" role="img"></canvas></div>
+<div id="crt"></div><div id="flash"></div>
+<div id="boot"><b>world.execute(me);</b><span>Mili — TUI music video · 120x45 terminal</span>
+<button id="go" autofocus>&gt; ./world.execute --me</button><span>space: pause · ←/→: seek 5s</span></div>
+<audio id="aud" src="Mili - world.execute (me) ;.mp3" preload="auto"></audio>
+<script src="envdata.js"></script><script src="lyrics.js"></script><script src="engine.js"></script>
+<script src="font.js"></script><script src="bg.js"></script><script src="art.js"></script><script src="hud.js"></script>
+<script src="s1.js"></script><script src="s2.js"></script><script src="s3.js"></script><script src="s4.js"></script><script src="s5.js"></script><script src="s6.js"></script>
+<script src="render.js"></script>
+</body></html>

@@ -1,0 +1,8 @@
+<!doctype html><meta charset=utf-8><body>working<script>
+(async()=>{try{const r=await fetch('../Mili%20-%20world.execute%20(me)%20%3B.mp3');const ab=await r.arrayBuffer();
+const ac=new OfflineAudioContext(1,44100,44100);const buf=await ac.decodeAudioData(ab);
+const sr=buf.sampleRate,d=buf.getChannelData(0),d2=buf.numberOfChannels>1?buf.getChannelData(1):d;
+const hop=Math.floor(sr/60),n=Math.floor(d.length/hop);let lp=0,lp2=0;const a=1-Math.exp(-2*Math.PI*110/sr);const B=[],A=[];
+for(let i=0;i<n;i++){let sb=0,sa=0;for(let j=i*hop;j<(i+1)*hop;j++){const v=(d[j]+d2[j])*0.5;lp+=a*(v-lp);lp2+=a*(lp-lp2);sb+=lp2*lp2;sa+=v*v}B.push(Math.sqrt(sb/hop));A.push(Math.sqrt(sa/hop))}
+await fetch('/save?name=env.json',{method:'POST',body:JSON.stringify({sr,dur:buf.duration,n,B:B.map(v=>+v.toFixed(4)),A:A.map(v=>+v.toFixed(4))})});document.body.textContent='DONE'}catch(e){document.body.textContent='ERR '+e}})();
+</script>

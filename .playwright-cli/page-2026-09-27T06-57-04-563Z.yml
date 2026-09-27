@@ -1,0 +1,196 @@
+- generic [active] [ref=e1]:
+  - dialog [aria-hidden]:
+    - generic:
+      - generic:
+        - generic: "R/H :: INITIALIZING"
+        - generic: 00:00:00
+      - generic:
+        - generic [aria-hidden]: "[ 01010010 / 01001000 ]"
+        - paragraph: "> establishing identity_"
+        - generic: RAVENHASH_
+        - paragraph: Loading operator profile...
+        - generic:
+          - generic: BOOT SEQUENCE
+          - generic: 000%
+      - generic:
+        - generic: SYS.RAVENHASH // PORTFOLIO.OS
+        - button: SKIP INTRO [ESC] ↗
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - link "RavenHASH 首页" [ref=e4] [cursor=pointer]:
+        - /url: "#home"
+        - generic [ref=e5]: "[R/H]"
+        - generic [ref=e6]: RAVENHASH_
+      - navigation "主导航" [ref=e7]:
+        - link "/home" [ref=e8] [cursor=pointer]:
+          - /url: "#home"
+        - link "/builds" [ref=e9] [cursor=pointer]:
+          - /url: "#work"
+        - link "/about" [ref=e10] [cursor=pointer]:
+          - /url: "#about"
+      - generic [ref=e11]:
+        - generic [ref=e13]: SYSTEM ONLINE
+        - generic [ref=e14]: 14:57:04 CST
+    - main [ref=e15]:
+      - region [ref=e16]:
+        - generic [ref=e17]:
+          - generic [ref=e18]: SYS://IDENTITY
+          - generic [ref=e19]: 01 / 04
+        - generic [ref=e20]:
+          - generic [ref=e21]:
+            - generic [ref=e22]:
+              - text: OPERATOR FOUND
+              - generic [ref=e24]: /
+              - text: ACCESS GRANTED
+            - heading "RAVEN HASH_" [level=1] [ref=e25]:
+              - generic [ref=e26]: RAVEN
+              - generic [ref=e27]: HASH_
+            - paragraph [ref=e28]:
+              - text: "NAME: RAVEN"
+              - generic [ref=e29]: //
+              - text: "HANDLE: RAVENHASH"
+            - paragraph [ref=e30]: 我构建会持续运行的系统。AI Agent、协作基础设施、网络协议。
+            - generic [ref=e31]:
+              - link "> ls ./builds" [ref=e32] [cursor=pointer]:
+                - /url: "#work"
+                - generic [ref=e33]: ">"
+                - text: ls ./builds
+                - generic [aria-hidden] [ref=e34]: ↗
+              - link "whoami" [ref=e35] [cursor=pointer]:
+                - /url: "#about"
+                - text: whoami →
+            - generic "工作方向" [ref=e36]:
+              - generic [ref=e37]: "[ AI AGENTS ]"
+              - generic [ref=e38]: "[ NETWORK PROTOCOLS ]"
+              - generic [ref=e39]: "[ LEET PROGRAMMER ]"
+          - generic "实时旋转的字符甜甜圈" [ref=e40]:
+            - generic [ref=e41]:
+              - generic [ref=e42]: "┌─ DONUT.C : LIVE PROCESS"
+              - generic [ref=e43]: PID 0x52A
+            - generic [ref=e44]:
+              - generic [aria-hidden]:
+                - generic: +
+                - generic: +
+                - generic: +
+                - generic: +
+              - img "由终端字符组成的旋转甜甜圈" [ref=e45]
+              - generic [ref=e46]: A = 0.46
+              - generic [ref=e47]: B = 0.47
+              - text: Z-BUFFER // ACTIVE
+            - generic [ref=e48]:
+              - generic [ref=e49]: render_mode=ASCII / z_buffer=ON
+              - generic [ref=e50]: ▂▄▆█▆▄▂
+        - generic [ref=e51]:
+          - generic [ref=e52]: NO SIMULATION. JUST SYSTEMS.
+          - 'link "NEXT: 06 BUILDS ↓" [ref=e53] [cursor=pointer]':
+            - /url: "#work"
+      - region [ref=e54]:
+        - generic [ref=e55]:
+          - generic [ref=e56]: SYS://PROJECTS
+          - generic [ref=e57]: 02 / 04
+        - generic [ref=e58]:
+          - generic [ref=e59]:
+            - paragraph [ref=e60]: /var/lib/raven/builds
+            - heading "BUILDS." [level=2] [ref=e61]
+          - paragraph [ref=e62]: 从 Agent 运行时到协议栈。每一个项目都指向实际可运行的系统。
+        - group "项目分类" [ref=e63]:
+          - generic [ref=e64]: "FILTER :"
+          - 'button "[ ALL : 06 ]" [pressed] [ref=e65] [cursor=pointer]'
+          - 'button "[ AGENT SYSTEMS : 03 ]" [ref=e66] [cursor=pointer]'
+          - 'button "[ PROTOCOLS : 03 ]" [ref=e67] [cursor=pointer]'
+        - generic [ref=e68]:
+          - article [ref=e69]:
+            - button "01 CorvusAI AGENT RUNTIME 面向多项目软件工程的持久化 AI Agent 运行时。 ↗" [ref=e70] [cursor=pointer]:
+              - generic [ref=e71]: "01"
+              - generic [ref=e72]:
+                - text: CorvusAI
+                - generic [ref=e73]: AGENT RUNTIME
+              - generic [ref=e74]: 面向多项目软件工程的持久化 AI Agent 运行时。
+              - generic [ref=e75]: ↗
+            - text: + + + +
+          - article [ref=e76]:
+            - button "02 TSUNAMI AI DESKTOP AGENT Windows 优先的桌面 Coding Agent Harness。 ↗" [ref=e77] [cursor=pointer]:
+              - generic [ref=e78]: "02"
+              - generic [ref=e79]:
+                - text: TSUNAMI AI
+                - generic [ref=e80]: DESKTOP AGENT
+              - generic [ref=e81]: Windows 优先的桌面 Coding Agent Harness。
+              - generic [ref=e82]: ↗
+            - text: + + + +
+          - article [ref=e83]:
+            - button "03 Vault AGENT INFRASTRUCTURE 多 Agent 协作的结构化状态与任务交接服务。 ↗" [ref=e84] [cursor=pointer]:
+              - generic [ref=e85]: "03"
+              - generic [ref=e86]:
+                - text: Vault
+                - generic [ref=e87]: AGENT INFRASTRUCTURE
+              - generic [ref=e88]: 多 Agent 协作的结构化状态与任务交接服务。
+              - generic [ref=e89]: ↗
+            - text: + + + +
+          - article [ref=e90]:
+            - button "04 tsunami / protocol TLS TRANSPORT 基于 TLS 1.3 的高性能多路复用代理协议。 ↗" [ref=e91] [cursor=pointer]:
+              - generic [ref=e92]: "04"
+              - generic [ref=e93]:
+                - text: tsunami / protocol
+                - generic [ref=e94]: TLS TRANSPORT
+              - generic [ref=e95]: 基于 TLS 1.3 的高性能多路复用代理协议。
+              - generic [ref=e96]: ↗
+            - text: + + + +
+          - article [ref=e97]:
+            - button "05 Wave WEBSOCKET TRANSPORT 伪装为真实 WebSocket 应用的隧道协议。 ↗" [ref=e98] [cursor=pointer]:
+              - generic [ref=e99]: "05"
+              - generic [ref=e100]:
+                - text: Wave
+                - generic [ref=e101]: WEBSOCKET TRANSPORT
+              - generic [ref=e102]: 伪装为真实 WebSocket 应用的隧道协议。
+              - generic [ref=e103]: ↗
+            - text: + + +
+          - article [ref=e104]:
+            - button "06 SEGMENT HTTP/2 TRANSPORT 藏在功能型视频流媒体站点后的加密多路复用代理。 ↗" [ref=e105] [cursor=pointer]:
+              - generic [ref=e106]: "06"
+              - generic [ref=e107]:
+                - text: SEGMENT
+                - generic [ref=e108]: HTTP/2 TRANSPORT
+              - generic [ref=e109]: 藏在功能型视频流媒体站点后的加密多路复用代理。
+              - generic [ref=e110]: ↗
+            - text: + + + +
+        - generic [ref=e111]:
+          - generic [ref=e112]: EOF // 06 RECORDS LOADED
+          - generic [ref=e113]: SELECT A ROW TO INSPECT ↗
+      - region [ref=e114]:
+        - generic [ref=e115]:
+          - generic [ref=e116]: SYS://OPERATOR
+          - generic [ref=e117]: 03 / 04
+        - generic [ref=e118]:
+          - generic [ref=e119]:
+            - paragraph [ref=e120]: $ cat /etc/raven/profile
+            - heading "BEHIND THE CURSOR." [level=2] [ref=e121]: BEHINDTHE CURSOR.
+            - paragraph [ref=e122]: 我是 Raven，也叫 RavenHASH。喜欢终端，也关心系统在演示结束后如何继续运行。
+            - paragraph [ref=e123]: 我做的东西横跨 AI Agent 与网络协议：持久状态、协作调度、工具执行、传输伪装。兴趣始终是同一件事：把复杂性做成可靠的能力。
+          - generic "RavenHASH 的项目关系图" [ref=e124]:
+            - generic [ref=e125]: "[ SYSTEM TOPOLOGY ]"
+            - generic [ref=e126]: ┌──────────────┐ │ RAVENHASH │ └──────┬───────┘ │ ┌──────────┴──────────┐ │ │ ┌────▼────┐ ┌────▼────┐ │ AGENTS │ │ NETWORK │ └────┬────┘ └────┬────┘ │ │ CorvusAI ─ TSUNAMI AI tsunami ─ Wave │ │ Vault SEGMENT
+            - generic [ref=e127]: // BUILD / RUN / PERSIST / ROUTE
+      - region [ref=e128]:
+        - generic [ref=e129]:
+          - generic [ref=e130]: SYS://CONTACT
+          - generic [ref=e131]: 04 / 04
+        - generic [ref=e132]:
+          - generic [ref=e133]:
+            - paragraph [ref=e134]: CONNECTION AVAILABLE
+            - heading "LET'S CONNECT." [level=2] [ref=e135]: LET'SCONNECT.
+          - link "> OPEN GITHUB PROFILE ↗" [ref=e136] [cursor=pointer]:
+            - /url: https://github.com/RavenholmAlpha
+            - generic [ref=e137]: "> OPEN GITHUB PROFILE"
+            - generic [ref=e138]: ↗
+        - generic [ref=e139]:
+          - generic [ref=e140]: © 2026 RAVENHASH
+          - generic [ref=e141]: MADE OF TEXT, SIGNAL & CODE.
+          - link "BACK TO TOP ↑" [ref=e142] [cursor=pointer]:
+            - /url: "#home"
+  - complementary "交互式 Shell" [ref=e143]:
+    - generic [ref=e144]:
+      - button "展开 Shell 输出" [ref=e145] [cursor=pointer]: ▣
+      - generic [ref=e146]: guest@raven:~$
+      - textbox "输入 Shell 命令" [ref=e147]:
+        - /placeholder: type help, ls, whoami...
+      - button "执行命令" [ref=e148] [cursor=pointer]: ↵
