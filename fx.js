@@ -93,7 +93,7 @@
   // Smooth Context demo: watch -> slide -> compact -> splice
   const win = $('#smooth-window'), lane = $('#smooth-lane'), panel = $('.smooth-panel');
   if (!win || !lane || !panel) return;
-  const SLOTS = 24, LIMIT = 20; // threshold at 85%
+  const SLOTS = 24, LIMIT = 20, WIN = 16; // threshold after slot 20; sliding window keeps the latest 16 turns raw
   const steps = [...document.querySelectorAll('#smooth-steps li')];
   const modeEl = $('#smooth-mode'), levelEl = $('#smooth-level'), jobEl = $('#smooth-job'), logEl = $('#smooth-log');
   const threshold = win.querySelector('.smooth-threshold'), frame = win.querySelector('.smooth-frame');
@@ -104,12 +104,15 @@
   function render(log) {
     win.replaceChildren(...ctx.map(block), frame, threshold);
     lane.replaceChildren(...queue.map(() => block('out')));
+    // Frame spans the last WIN slots, ending at the live turn.
+    win.style.setProperty('--a', Math.max(0, ctx.length - WIN));
+    win.style.setProperty('--b', ctx.length);
     lane.classList.toggle('working', mode === 'compact');
     panel.dataset.mode = mode;
     const [idx, label] = modes[mode];
     steps.forEach((li, i) => li.classList.toggle('is-active', i === idx));
     modeEl.textContent = label;
-    levelEl.textContent = String(Math.round(ctx.length / SLOTS * 100)).padStart(3, '0') + '%';
+    levelEl.textContent = String(Math.round(ctx.filter((k) => k !== 'out').length / SLOTS * 100)).padStart(3, '0') + '%';
     jobEl.textContent = mode === 'compact' ? 'COMPACTING ' + queue.length + ' TURNS' : mode === 'splice' ? 'MERGED' : queue.length ? 'QUEUED' : 'IDLE';
     if (log) logEl.textContent = '> ' + log;
   }
@@ -117,19 +120,25 @@
     ctx = ctx.map((k) => (k === 'live' ? 'hist' : k));
     ctx.push('live');
   }
+  // History left behind by the window becomes a dashed "slid out" slot and joins the compactor queue.
+  // Once the bar is full, the oldest slid-out slot drops off so the window keeps moving right.
+  function slideOut() {
+    const edge = ctx.length - WIN;
+    for (let i = 0; i < edge; i++) if (ctx[i] === 'hist') { ctx[i] = 'out'; queue.push('out'); }
+    while (ctx.length > SLOTS) { const at = ctx.indexOf('out'); if (at < 0) break; ctx.splice(at, 1); }
+  }
   function tick() {
     if (mode === 'watch') {
       pushTurn();
-      if (ctx.length >= LIMIT) { mode = 'slide'; render('context.level >= 85% // switch to sliding window'); return; }
+      if (ctx.length >= LIMIT) { mode = 'slide'; slideOut(); render('context.level >= 85% // switch to sliding window'); return; }
       render('turn appended // level ' + Math.round(ctx.length / SLOTS * 100) + '%');
     } else if (mode === 'slide' || mode === 'compact') {
       pushTurn();
-      const at = ctx.findIndex((k) => k === 'hist');
-      queue.push(ctx.splice(at, 1)[0]);
+      slideOut();
       if (mode === 'slide' && queue.length >= 2) { mode = 'compact'; work = 0; }
       if (mode === 'compact' && ++work >= 5) {
         mode = 'splice';
-        ctx = ctx.filter((k) => k !== 'sum');
+        ctx = ctx.filter((k) => k !== 'sum' && k !== 'out');
         ctx.unshift('sum');
         queue = []; hold = 0;
         render('compactor.done // summary spliced at head, raw recent turns intact');
