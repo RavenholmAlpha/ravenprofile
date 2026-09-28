@@ -177,3 +177,33 @@ body { background: radial-gradient(120% 80% at 50% -10%, #0c1716 0%, var(--bg) 5
 .shape-menu button[aria-checked="true"] span::before { content: "▶"; }
 .shape-menu button[aria-checked="true"] span { color: var(--accent); font-size: 0; }
 .shape-menu button[aria-checked="true"] span::before { font-size: 10px; }
+
+
+/* ---- 3D exploded view ---- */
+#explode-toggle { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--line); background: transparent; color: var(--muted); font-size: 16px; line-height: 1; cursor: pointer; }
+#explode-toggle:hover, #explode-toggle[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); }
+html.is-exploded body { background: #030506; }
+html.is-exploded body { cursor: grab; user-select: none; }
+/* Ancestors must not clip layers that swing out of their box. */
+html.is-exploded .page, html.is-exploded main, html.is-exploded main * { overflow: visible !important; }
+html.is-exploded .ex-layer {
+  transition: transform .9s cubic-bezier(.2,.8,.2,1) !important;
+  outline: 1px solid rgba(125,241,170,.35); outline-offset: 2px;
+  box-shadow: 0 0 40px rgba(125,241,170,.08);
+  will-change: transform;
+}
+html.is-exploded main .ex-layer { background-color: rgba(7,11,12,.72); }
+html.is-exploded .ex-layer::after {
+  content: attr(data-ex-layer); position: absolute; top: -22px; left: 0; font: 700 10px/1 monospace; color: var(--accent); letter-spacing: .1em; pointer-events: none;
+}
+html.is-exploded .ex-layer.ex-static { position: relative; }
+html.is-exploded .ex-layer:hover { outline-color: var(--accent); }
+html.is-exploded .site-header { z-index: 30; }
+
+.ex-hud { position: fixed; left: 20px; bottom: 20px; z-index: 1000; display: flex; gap: 18px; font: 700 11px/1 monospace; color: var(--accent); letter-spacing: .08em; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { html.is-exploded .ex-layer { transition: none !important; } }
+html.is-exploded .ex-host:not(.ex-layer) { background: none !important; border-color: transparent !important; box-shadow: none !important; backdrop-filter: none !important; }
+html.is-exploded .ex-host:not(.ex-layer)::before, html.is-exploded .ex-host:not(.ex-layer)::after { display: none !important; }
+html.is-exploded .grain, html.is-exploded .screen-noise, html.is-exploded .spotlight { display: none; }
+.ex-hud { align-items: center; }
+.ex-hud .ex-exit { pointer-events: auto; padding: 6px 10px; border: 1px solid var(--accent); background: #070b0c; color: var(--accent); font: inherit; cursor: pointer; }
